@@ -35,7 +35,11 @@ import Contact from "./Contact.astro";
 
       document.getElementById("mobile-menu-toggle")?.classList.toggle("open");
 
+      const body = document.querySelector("body");
+
       if (!open) {
+        if (body) body.style.overflow = "hidden";
+
         timeline([
           ["#mobile-menu", { display: "flex" }],
           [
@@ -55,6 +59,8 @@ import Contact from "./Contact.astro";
           ],
         ]);
       } else {
+        if (body) body.style.overflow = "unset";
+
         timeline([
           [
             "#mobile-menu #menu-options > *",
