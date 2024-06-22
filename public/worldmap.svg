@@ -1,14 +1,9 @@
----
-const { class: className } = Astro.props;
----
-
 <svg
   width="519"
   height="342"
   viewBox="0 0 519 342"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class={className}
 >
   <g clip-path="url(#clip0_50_3381)">
     <rect width="519" height="342" rx="10" fill="#FDF8EC"></rect>
