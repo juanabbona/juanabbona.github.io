@@ -13,24 +13,30 @@ import ToolChip from "../components/ToolChip.astro";
   <body>
     <Layout>
       <section
-        class="flex flex-col gap-8 p-6 sm:p-0 w-full sm:w-[660px] z-10 sm:py-[110px] min-h-screen"
+        class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
       >
-        <img
-          src="/worldmap.svg"
-          alt="Uruguay in the world map"
-          class="fixed -top-5 -right-20 hidden sm:block"
-        />
-        <h3 class="text-lg font-medium">Hey there!</h3>
-        <p class="text-base sm:w-[460px]">
-          I’m Juan, a software engineer with a passion for design based in
-          Montevideo, Uruguay.
-          <br />
-          <br />
-          I’ve been building beautiful web applications that scale for over seven
-          years. My main focus is on frontend web development using React and TypeScript
-          although I also have plenty of experience on backend development using
-          Python and Django.
-        </p>
+        <div class="flex gap-8">
+          <div class="flex flex-col gap-8">
+            <h3 class="text-lg font-medium">Hey there!</h3>
+            <p class="text-base">
+              I’m Juan, a software engineer with a passion for design based in
+              Montevideo, Uruguay.
+              <br />
+              <br />
+              I’ve been building beautiful web applications that scale for over seven
+              years. My main focus is on frontend web development using React and
+              TypeScript although I also have plenty of experience on backend development
+              using Python and Django.
+            </p>
+          </div>
+          <div class="relative">
+            <img
+              src="/worldmap.svg"
+              alt="Uruguay in the world map"
+              class="absolute"
+            />
+          </div>
+        </div>
         <h3 class="text-lg font-medium text-center">
           I’m experienced working with
         </h3>

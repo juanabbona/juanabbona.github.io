@@ -4,7 +4,7 @@ import Contact from "./Contact.astro";
 ---
 
 <div
-  class="flex items-center gap-4 px-6 py-4 sm:hidden bg-sand border-b border-sand-dark z-50 fixed top-0 left-0 right-0 overflow-hidden"
+  class="lg:hidden flex items-center gap-4 px-6 py-4 bg-sand border-b border-sand-dark z-50 fixed top-0 left-0 right-0 overflow-hidden"
 >
   <button id="mobile-menu-toggle" class="menu-icon">
     <div class="line bg-brand-brown first"></div>
@@ -16,25 +16,84 @@ import Contact from "./Contact.astro";
 
 <div
   id="mobile-menu"
-  class="sm:hidden fixed top-0 bottom-0 left-[-100%] flex flex-col justify-between w-full bg-sand transition-all duration-500 px-6 pl-[64px] py-8 pt-[82px] z-40"
+  class="lg:hidden fixed top-0 bottom-0 left-[-100%] flex flex-col justify-between w-full px-6 pl-[64px] py-8 pt-[82px] z-40"
 >
   <Menu />
   <Contact />
 </div>
 
 <script>
-  const body = document.querySelector("body");
-  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const options = mobileMenu?.querySelector("#menu-options");
+  const contact = mobileMenu?.querySelector("#contact");
+
+  [...(options?.children || [])].forEach((node) =>
+    node?.classList.add("-ml-52")
+  );
+
+  contact?.classList.add("-mb-52");
+
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+
+  const delayClasses = ["delay-300", "delay-500", "delay-700", "delay-1000"];
 
   if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener("click", () => {
-      mobileMenuToggle.classList.toggle("open");
+      const isOpen = mobileMenuToggle.classList.contains("open");
 
-      if (body && mobileMenu) {
-        body.classList.toggle("overflow-hidden");
-        mobileMenu.classList.toggle("left-[-100%]");
-        mobileMenu.classList.toggle("left-0");
+      const body = document.querySelector("body");
+      const content = document.getElementById("content");
+
+      if (!body || !content || !mobileMenu || !options || !contact) return;
+
+      const animationEnter: [HTMLElement, string, boolean][] = [
+        ...[...(options?.children || [])].map(
+          (node, index) => [node, delayClasses[index], true] as any
+        ),
+        [contact, delayClasses[delayClasses.length - 1], true],
+        [mobileMenuToggle, "open", true],
+        [content, "delay-300", false],
+        [content, "scale-95", true],
+        [content, "opacity-0", true],
+        [body, "overflow-hidden", true],
+        [mobileMenu, "left-0", true],
+        [mobileMenu, "left-[-100%]", false],
+        ...[...(options?.children || [])].map(
+          (node) => [node, "-ml-52", false] as any
+        ),
+
+        [contact, "-mb-52", false],
+      ];
+
+      const animationExit: [HTMLElement, string, boolean][] = [
+        ...[...(options?.children || [])].map(
+          (node) => [node, "-ml-52", true] as any
+        ),
+        [contact, delayClasses[delayClasses.length - 1], false],
+
+        [mobileMenu, "left-0", false],
+        [mobileMenu, "left-[-100%]", true],
+        [mobileMenu, "delay-300", false],
+        [body, "overflow-hidden", false],
+        [content, "opacity-0", false],
+        [content, "scale-95", false],
+        [mobileMenuToggle, "open", false],
+        ...[...(options?.children || [])].map(
+          (node, index) => [node, delayClasses[index], false] as any
+        ),
+        [contact, "-mb-52", true],
+      ];
+
+      if (!isOpen) {
+        animationEnter.forEach(([element, className, add]) => {
+          if (add) element.classList.add(className);
+          else element.classList.remove(className);
+        });
+      } else {
+        animationExit.forEach(([element, className, add]) => {
+          if (add) element.classList.add(className);
+          else element.classList.remove(className);
+        });
       }
     });
   }
