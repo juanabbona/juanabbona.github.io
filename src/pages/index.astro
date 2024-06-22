@@ -1,0 +1,22 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Menu from "../components/Menu.astro";
+import Layout from "../components/Layout.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Layout>
+      <section class="min-h-screen">about!</section>
+      <section class="min-h-screen">experience!</section>
+      <section class="min-h-screen">blog!</section>
+    </Layout>
+  </body>
+</html>

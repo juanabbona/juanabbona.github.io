@@ -1,0 +1,7 @@
+* {
+	@apply text-brand-brown;
+}
+
+html {
+	@apply bg-sand;
+}
