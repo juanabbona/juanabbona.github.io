@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Layout from "../components/Layout.astro";
+import Worldmap from "../components/Worldmap.astro";
 ---
 
 <!doctype html>
@@ -11,7 +12,27 @@ import Layout from "../components/Layout.astro";
   </head>
   <body>
     <Layout>
-      <section class="min-h-screen">about!</section>
+      <div
+        class="min-w-full min-h-screen relative overflow-x-hidden flex justify-center"
+      >
+        <Worldmap class="absolute -top-5 -right-20" />
+        <div class="flex flex-col gap-8 w-[660px] z-10 py-[110px]">
+          <h3 class="text-lg font-bold">Hey there!</h3>
+          <p class="text-base w-[460px]">
+            I’m Juan, a software engineer with a passion for design based in
+            Montevideo, Uruguay.
+            <br />
+            <br />
+            I’ve been building beautiful web applications that scale for over seven
+            years. My main focus is on frontend web development using React and TypeScript
+            although I also have plenty of experience on backend development using
+            Python and Django.
+          </p>
+          <h3 class="text-lg font-bold text-center">
+            I’m experienced working with
+          </h3>
+        </div>
+      </div>
       <section class="min-h-screen">experience!</section>
       <section class="min-h-screen">blog!</section>
     </Layout>
