@@ -32,7 +32,7 @@ const { href, ...props } = Astro.props;
     });
   };
 
-  window.addEventListener("hashchange", (event) => {
+  window.addEventListener("hashchange", () => {
     reassignButtonClasses();
   });
 
