@@ -16,87 +16,65 @@ import Contact from "./Contact.astro";
 
 <div
   id="mobile-menu"
-  class="lg:hidden fixed top-0 bottom-0 left-[-100%] flex flex-col justify-between w-full px-6 pl-[64px] py-8 pt-[82px] z-40"
+  class="fixed top-0 bottom-0 flex-col justify-between w-full px-6 pl-[64px] py-8 pt-[82px] z-40"
+  style="display: none;"
 >
   <Menu />
   <Contact />
 </div>
 
 <script>
-  const mobileMenu = document.getElementById("mobile-menu");
-  const options = mobileMenu?.querySelector("#menu-options");
-  const contact = mobileMenu?.querySelector("#contact");
+  import { timeline, spring, stagger } from "motion";
 
-  [...(options?.children || [])].forEach((node) =>
-    node?.classList.add("-ml-52")
-  );
+  document
+    .getElementById("mobile-menu-toggle")
+    ?.addEventListener("click", () => {
+      const open = document
+        .getElementById("mobile-menu-toggle")
+        ?.classList.contains("open");
 
-  contact?.classList.add("-mb-52");
+      document.getElementById("mobile-menu-toggle")?.classList.toggle("open");
 
-  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-
-  const delayClasses = ["delay-300", "delay-500", "delay-700", "delay-1000"];
-
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      const isOpen = mobileMenuToggle.classList.contains("open");
-
-      const body = document.querySelector("body");
-      const content = document.getElementById("content");
-
-      if (!body || !content || !mobileMenu || !options || !contact) return;
-
-      const animationEnter: [HTMLElement, string, boolean][] = [
-        ...[...(options?.children || [])].map(
-          (node, index) => [node, delayClasses[index], true] as any
-        ),
-        [contact, delayClasses[delayClasses.length - 1], true],
-        [mobileMenuToggle, "open", true],
-        [content, "delay-300", false],
-        [content, "scale-95", true],
-        [content, "opacity-0", true],
-        [body, "overflow-hidden", true],
-        [mobileMenu, "left-0", true],
-        [mobileMenu, "left-[-100%]", false],
-        ...[...(options?.children || [])].map(
-          (node) => [node, "-ml-52", false] as any
-        ),
-
-        [contact, "-mb-52", false],
-      ];
-
-      const animationExit: [HTMLElement, string, boolean][] = [
-        ...[...(options?.children || [])].map(
-          (node) => [node, "-ml-52", true] as any
-        ),
-        [contact, delayClasses[delayClasses.length - 1], false],
-
-        [mobileMenu, "left-0", false],
-        [mobileMenu, "left-[-100%]", true],
-        [mobileMenu, "delay-300", false],
-        [body, "overflow-hidden", false],
-        [content, "opacity-0", false],
-        [content, "scale-95", false],
-        [mobileMenuToggle, "open", false],
-        ...[...(options?.children || [])].map(
-          (node, index) => [node, delayClasses[index], false] as any
-        ),
-        [contact, "-mb-52", true],
-      ];
-
-      if (!isOpen) {
-        animationEnter.forEach(([element, className, add]) => {
-          if (add) element.classList.add(className);
-          else element.classList.remove(className);
-        });
+      if (!open) {
+        timeline([
+          ["#mobile-menu", { display: "flex" }],
+          [
+            "#content",
+            { opacity: 0, transform: "scale(.95)" },
+            { duration: 0.3, at: "<" },
+          ],
+          [
+            "#mobile-menu #menu-options > *",
+            { x: [-200, 0] },
+            { easing: spring(), delay: stagger(0.1), at: "<" },
+          ],
+          [
+            "#mobile-menu #contact",
+            { y: [100, 0] },
+            { easing: spring(), at: "<" },
+          ],
+        ]);
       } else {
-        animationExit.forEach(([element, className, add]) => {
-          if (add) element.classList.add(className);
-          else element.classList.remove(className);
-        });
+        timeline([
+          [
+            "#mobile-menu #menu-options > *",
+            { x: [0, -200] },
+            { easing: spring(), delay: stagger(0.1) },
+          ],
+          [
+            "#mobile-menu #contact",
+            { y: [0, 100] },
+            { easing: spring(), at: "<" },
+          ],
+          ["#mobile-menu", { display: "none" }, { at: "<" }],
+          [
+            "#content",
+            { opacity: 1, transform: "scale(1)" },
+            { duration: 0.3 },
+          ],
+        ]);
       }
     });
-  }
 </script>
 
 <style>
