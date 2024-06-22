@@ -3,7 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 
-import "@fontsource/raleway";
+import "@fontsource-variable/raleway";
 
 interface Props {
   title: string;
@@ -18,9 +18,13 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no"
+/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#FDF8EC" />
 
 <!-- Font preloads -->
 <link

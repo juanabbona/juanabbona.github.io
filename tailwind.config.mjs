@@ -11,7 +11,7 @@ export default {
         "brand-brown": "#3D2C2E",
       },
       fontFamily: {
-        sans: ["Raleway", ...defaultTheme.fontFamily.sans],
+        sans: ["Raleway Variable", ...defaultTheme.fontFamily.sans],
       },
     },
   },

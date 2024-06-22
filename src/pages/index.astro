@@ -12,48 +12,46 @@ import ToolChip from "../components/ToolChip.astro";
   </head>
   <body>
     <Layout>
-      <div
-        class="min-w-full min-h-screen relative overflow-x-hidden flex justify-center"
+      <section
+        class="flex flex-col gap-8 p-6 sm:p-0 w-full sm:w-[660px] z-10 sm:py-[110px] min-h-screen"
       >
         <img
           src="/worldmap.svg"
           alt="Uruguay in the world map"
-          class="absolute -top-5 -right-20"
+          class="fixed -top-5 -right-20 hidden sm:block"
         />
-        <div class="flex flex-col gap-8 w-[660px] z-10 py-[110px]">
-          <h3 class="text-lg font-bold">Hey there!</h3>
-          <p class="text-base w-[460px]">
-            I’m Juan, a software engineer with a passion for design based in
-            Montevideo, Uruguay.
-            <br />
-            <br />
-            I’ve been building beautiful web applications that scale for over seven
-            years. My main focus is on frontend web development using React and TypeScript
-            although I also have plenty of experience on backend development using
-            Python and Django.
-          </p>
-          <h3 class="text-lg font-bold text-center">
-            I’m experienced working with
-          </h3>
-          <div class="flex flex-wrap gap-4 justify-center">
-            <ToolChip tool="React" />
-            <ToolChip tool="React Native" />
-            <ToolChip tool="TypeScript" />
-            <ToolChip tool="JavaScript" />
-            <ToolChip tool="Material UI" />
-            <ToolChip tool="Next.js" />
-            <ToolChip tool="TanStack Query" />
-            <ToolChip tool="Tailwind CSS" />
-            <ToolChip tool="Nx" />
-            <ToolChip tool="Storybook" />
-            <ToolChip tool="Git" />
-            <ToolChip tool="Docker" />
-            <ToolChip tool="Python" />
-            <ToolChip tool="Django" />
-            <ToolChip tool="PostgreSQL" />
-          </div>
+        <h3 class="text-lg font-medium">Hey there!</h3>
+        <p class="text-base sm:w-[460px]">
+          I’m Juan, a software engineer with a passion for design based in
+          Montevideo, Uruguay.
+          <br />
+          <br />
+          I’ve been building beautiful web applications that scale for over seven
+          years. My main focus is on frontend web development using React and TypeScript
+          although I also have plenty of experience on backend development using
+          Python and Django.
+        </p>
+        <h3 class="text-lg font-medium text-center">
+          I’m experienced working with
+        </h3>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <ToolChip tool="React" />
+          <ToolChip tool="React Native" />
+          <ToolChip tool="TypeScript" />
+          <ToolChip tool="JavaScript" />
+          <ToolChip tool="Material UI" />
+          <ToolChip tool="Next.js" />
+          <ToolChip tool="TanStack Query" />
+          <ToolChip tool="Tailwind CSS" />
+          <ToolChip tool="Nx" />
+          <ToolChip tool="Storybook" />
+          <ToolChip tool="Git" />
+          <ToolChip tool="Docker" />
+          <ToolChip tool="Python" />
+          <ToolChip tool="Django" />
+          <ToolChip tool="PostgreSQL" />
         </div>
-      </div>
+      </section>
       <section class="min-h-screen">experience!</section>
       <section class="min-h-screen">blog!</section>
     </Layout>

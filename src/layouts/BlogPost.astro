@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import Menu from "../components/Menu.astro";
+import Sidebar from "../components/Sidebar.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -54,7 +54,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   </head>
 
   <body>
-    <Menu />
+    <Sidebar />
     <main>
       <article>
         <div class="hero-image">

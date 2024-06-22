@@ -1,0 +1,86 @@
+---
+import Menu from "./Menu.astro";
+import Contact from "./Contact.astro";
+---
+
+<div
+  class="flex items-center gap-4 px-6 py-4 sm:hidden bg-sand border-b border-sand-dark z-50 fixed top-0 left-0 right-0 overflow-hidden"
+>
+  <button id="mobile-menu-toggle" class="menu-icon">
+    <div class="line bg-brand-brown first"></div>
+    <div class="line bg-brand-brown second"></div>
+    <div class="line bg-brand-brown third"></div>
+  </button>
+  <span class="text-xl">Juan Abbona</span>
+</div>
+
+<div
+  id="mobile-menu"
+  class="sm:hidden fixed top-0 bottom-0 left-[-100%] flex flex-col justify-between w-full bg-sand transition-all duration-500 px-6 pl-[64px] py-8 pt-[82px] z-40"
+>
+  <Menu />
+  <Contact />
+</div>
+
+<script>
+  const body = document.querySelector("body");
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", () => {
+      mobileMenuToggle.classList.toggle("open");
+
+      if (body && mobileMenu) {
+        body.classList.toggle("overflow-hidden");
+        mobileMenu.classList.toggle("left-[-100%]");
+        mobileMenu.classList.toggle("left-0");
+      }
+    });
+  }
+</script>
+
+<style>
+  .menu-icon {
+    width: 25px;
+    height: 25px;
+    position: relative;
+  }
+
+  .menu-icon .line {
+    width: calc(100% - 4px);
+    height: 2px;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.3s;
+  }
+
+  .menu-icon .line.first {
+    top: 4px;
+    left: 2px;
+  }
+
+  .menu-icon .line.second {
+    top: calc(50% - 1.5px);
+    left: 2px;
+  }
+
+  .menu-icon .line.third {
+    bottom: 4px;
+    left: 2px;
+  }
+
+  .menu-icon.open .line.first {
+    transform: rotate(45deg);
+    top: calc(50% - 1px);
+  }
+
+  .menu-icon.open .line.second {
+    opacity: 0;
+  }
+
+  .menu-icon.open .line.third {
+    transform: rotate(-45deg);
+    bottom: calc(50% - 1px);
+  }
+</style>

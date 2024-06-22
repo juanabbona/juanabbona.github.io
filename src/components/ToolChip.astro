@@ -1,94 +1,113 @@
 ---
-import kebabCase from "lodash/kebabCase";
-
 const { tool } = Astro.props;
 
-const toolClass = kebabCase(tool.toLowerCase());
+const TOOLS = [
+  {
+    name: "Django",
+    url: "https://www.djangoproject.com/",
+    color: "#93ecc9",
+    icon: "/icons/django.svg",
+  },
+  {
+    name: "Docker",
+    url: "https://www.docker.com/",
+    color: "#bbd0f9",
+    icon: "/icons/docker.svg",
+  },
+  {
+    name: "Git",
+    url: "https://git-scm.com/",
+    color: "#fac4c0",
+    icon: "/icons/git.svg",
+  },
+  {
+    name: "JavaScript",
+    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    color: "#fbef8e",
+    icon: "/icons/javascript.svg",
+  },
+  {
+    name: "Material UI",
+    url: "https://material-ui.com/",
+    color: "#b2d8ff",
+    icon: "/icons/material-ui.svg",
+  },
+  {
+    name: "Next.js",
+    url: "https://nextjs.org/",
+    color: "#cccccc",
+    icon: "/icons/next-js.svg",
+  },
+  {
+    name: "Nx",
+    url: "https://nx.dev/",
+    color: "#afbbd9",
+    icon: "/icons/nx.svg",
+  },
+  {
+    name: "PostgreSQL",
+    url: "https://www.postgresql.org/",
+    color: "#b9d2e6",
+    icon: "/icons/postgresql.svg",
+  },
+  {
+    name: "Python",
+    url: "https://www.python.org/",
+    color: "#b8d2e8",
+    icon: "/icons/python.svg",
+  },
+  {
+    name: "React Native",
+    url: "https://reactnative.dev/",
+    color: "#cbced8",
+    icon: "/icons/react-native.svg",
+  },
+  {
+    name: "React",
+    url: "https://reactjs.org/",
+    color: "#beecfb",
+    icon: "/icons/react.svg",
+  },
+  {
+    name: "Storybook",
+    url: "https://storybook.js.org/",
+    color: "#fec7da",
+    icon: "/icons/storybook.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    url: "https://tailwindcss.com/",
+    color: "#c3ebfc",
+    icon: "/icons/tailwind-css.svg",
+  },
+  {
+    name: "TanStack Query",
+    url: "https://tanstack.com/query",
+    color: "#ffc5cb",
+    icon: "/icons/tanstack-query.svg",
+  },
+  {
+    name: "TypeScript",
+    url: "https://www.typescriptlang.org/",
+    color: "#b9d2e6",
+    icon: "/icons/typescript.svg",
+  },
+];
+
+const { url, color, icon } =
+  TOOLS.find(({ name }) => name === (tool as string)) || {};
 ---
 
-<a href="#" class:list={["tool-chip", toolClass]}>
+<a
+  href={url}
+  target="_blank"
+  class="flex items-center rounded-full text-sm font-light gap-2 text-black p-1 pr-3"
+  style={`background-color: ${color}`}
+>
   <div
-    class="icon"
-    style={`background: url('/icons/${toolClass}.svg') no-repeat center;`}
+    class="w-[20px] h-[20px] rounded-full"
+    style={`background: url('${icon}') no-repeat center;`}
   >
   </div>
   {tool}
 </a>
-
-<style>
-  .tool-chip {
-    @apply flex items-center bg-blue-100 rounded-full text-sm font-light;
-
-    gap: 7px;
-    color: #000;
-    padding: 5px;
-    padding-right: 12px;
-  }
-
-  .tool-chip .icon {
-    @apply rounded-full;
-
-    width: 20px;
-    height: 20px;
-  }
-
-  .tool-chip.django {
-    background-color: #93ecc9;
-  }
-
-  .tool-chip.docker {
-    background-color: #bbd0f9;
-  }
-
-  .tool-chip.git {
-    background-color: #fac4c0;
-  }
-
-  .tool-chip.javascript {
-    background-color: #fbef8e;
-  }
-
-  .tool-chip.material-ui {
-    background-color: #b2d8ff;
-  }
-
-  .tool-chip.next-js {
-    background-color: #cccccc;
-  }
-
-  .tool-chip.nx {
-    background-color: #afbbd9;
-  }
-
-  .tool-chip.postgresql {
-    background-color: #b9d2e6;
-  }
-
-  .tool-chip.python {
-    background-color: #b8d2e8;
-  }
-
-  .tool-chip.react-native {
-    background-color: #cbced8;
-  }
-
-  .tool-chip.react {
-    background-color: #beecfb;
-  }
-
-  .tool-chip.storybook {
-    background-color: #fec7da;
-  }
-
-  .tool-chip.tailwind-css {
-    background-color: #c3ebfc;
-  }
-
-  .tool-chip.tanstack-query {
-    background-color: #ffc5cb;
-  }
-
-  .tool-chip.typescript {
-    background-color: #dcedff;
-  }
-</style>

@@ -1,10 +1,14 @@
 ---
-import Menu from "./Menu.astro";
+import Sidebar from "./Sidebar.astro";
+import Header from "./Header.astro";
 ---
 
 <div class="flex min-h-screen">
-  <Menu />
-  <div class="flex-1 ml-[500px]">
+  <Header />
+  <Sidebar />
+  <div
+    class="flex flex-col items-center flex-1 mt-[58px] sm:mt-0 sm:ml-[500px]"
+  >
     <slot />
   </div>
 </div>
