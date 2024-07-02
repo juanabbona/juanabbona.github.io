@@ -13,9 +13,10 @@ import ToolChip from "../components/ToolChip.astro";
   <body>
     <Layout>
       <section
+        id="about"
         class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
       >
-        <div class="flex">
+        <div class="flex flex-col md:flex-row">
           <div class="flex flex-col gap-8 flex-1">
             <h3 class="text-lg font-medium">Hey there!</h3>
             <p class="text-base">
@@ -29,13 +30,19 @@ import ToolChip from "../components/ToolChip.astro";
               using Python and Django.
             </p>
           </div>
-          <div class="relative flex w-[240px]">
-            <div class="absolute w-[520px] top-[-56%]">
+          <div class="w-[240px] -z-10">
+            <div
+              class="relative w-[520px] mt-[-175px] md:mt-[-56%] md:ml-[-40px]"
+            >
+              <div
+                class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-sand from-25% via-50% via-transparent md:hidden"
+              >
+              </div>
               <img src="/worldmap.svg" alt="Uruguay in the world map" />
             </div>
           </div>
         </div>
-        <h3 class="text-lg font-medium text-center">
+        <h3 class="text-lg font-medium text-center md:mt-16">
           I’m experienced working with
         </h3>
         <div class="flex flex-wrap gap-4 justify-center">
@@ -56,8 +63,8 @@ import ToolChip from "../components/ToolChip.astro";
           <ToolChip tool="PostgreSQL" />
         </div>
       </section>
-      <section class="min-h-screen">experience!</section>
-      <section class="min-h-screen">blog!</section>
+      <section id="experience" class="min-h-screen">experience!</section>
+      <section id="blog" class="min-h-screen">blog!</section>
     </Layout>
   </body>
 </html>

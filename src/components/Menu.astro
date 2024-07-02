@@ -2,8 +2,82 @@
 import MenuLink from "./MenuLink.astro";
 ---
 
-<div id="menu-options" class="flex flex-col gap-2 items-start -ml-6">
-  <MenuLink href="#about">About</MenuLink>
-  <MenuLink href="#experience">Experience</MenuLink>
-  <MenuLink href="#blog">Blog</MenuLink>
+<div id="menu-options" class="relative flex flex-col gap-2 items-start -ml-6">
+  <div
+    id="menu-option-indicator"
+    class="absolute top-0 w-[103px] h-[60px] bg-sand-dark rounded-full"
+  >
+  </div>
+  <MenuLink data-section="about" data-active="true">About</MenuLink>
+  <MenuLink data-section="experience" data-active="false">Experience</MenuLink>
+  <MenuLink data-section="blog" data-active="false">Blog</MenuLink>
 </div>
+
+<script>
+  import { scroll, spring, timeline, type TimelineDefinition } from "motion";
+
+  scroll(({ y }) => {
+    const menuOptions = document.getElementById("menu-options");
+
+    const sectionIds = [
+      ...(menuOptions?.querySelectorAll("*[data-section]") || []),
+    ].map((element) => element.getAttribute("data-section") as string);
+
+    const sections = sectionIds.map((sectionId: string) =>
+      document.getElementById(sectionId)
+    );
+
+    const activeSectionIndex = sections.findIndex(
+      (section) =>
+        section &&
+        section?.offsetTop <= y.current + window.innerHeight / 2 &&
+        section?.offsetTop + section?.offsetHeight >
+          y.current + window.innerHeight / 2
+    );
+
+    const activeMenuOption = menuOptions?.querySelector<HTMLElement>(
+      `*[data-section='${sectionIds[activeSectionIndex]}']`
+    );
+
+    const prevActiveMenuOption = menuOptions?.querySelector<HTMLElement>(
+      "*[data-active='true']"
+    );
+
+    if (activeMenuOption !== prevActiveMenuOption) {
+      const activeMenuOptionWidth =
+        activeMenuOption?.getBoundingClientRect().width || 0;
+      const prevActiveMenuOptionWidth =
+        prevActiveMenuOption?.getBoundingClientRect().width || 0;
+
+      const sequence: TimelineDefinition = [
+        [
+          "#menu-option-indicator",
+          {
+            width: [
+              `${prevActiveMenuOptionWidth}px`,
+              `${activeMenuOptionWidth}px`,
+            ],
+          },
+          { at: "-0.5" },
+        ],
+        [
+          "#menu-option-indicator",
+          {
+            y: [
+              prevActiveMenuOption?.offsetTop || 0,
+              activeMenuOption?.offsetTop || 0,
+            ],
+          },
+          { easing: spring({ mass: 0.3 }), at: "-1" },
+        ],
+      ];
+
+      if (activeMenuOptionWidth < prevActiveMenuOptionWidth) sequence.reverse();
+
+      timeline(sequence);
+
+      prevActiveMenuOption?.setAttribute("data-active", "false");
+      activeMenuOption?.setAttribute("data-active", "true");
+    }
+  });
+</script>

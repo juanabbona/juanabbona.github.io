@@ -13,28 +13,3 @@ const { href, ...props } = Astro.props;
 >
   <slot />
 </a>
-
-<script>
-  // Find our component DOM on the page.
-  const buttons = document.querySelectorAll(".menu-link");
-
-  const reassignButtonClasses = () => {
-    buttons.forEach((button) => {
-      const href = button.getAttribute("href");
-      const isActive =
-        href === location.hash ||
-        (!location.hash && href === "#about" && location.pathname === "/");
-      if (isActive) {
-        button.classList.add("bg-sand-dark");
-      } else {
-        button.classList.remove("bg-sand-dark");
-      }
-    });
-  };
-
-  window.addEventListener("hashchange", () => {
-    reassignButtonClasses();
-  });
-
-  reassignButtonClasses();
-</script>

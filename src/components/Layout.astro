@@ -1,17 +1,10 @@
 ---
 import Sidebar from "./Sidebar.astro";
 import Header from "./Header.astro";
+import PageLoader from "./PageLoader.astro";
 ---
 
-<div
-  id="page-loader"
-  class="fixed top-0 right-0 bottom-0 left-0 bg-sand z-50 flex items-center justify-center"
->
-  <div
-    class="border-4 border-sand-dark border-b-transparent border-l-transparent rounded-full w-[40px] h-[40px] animate-spin"
-  >
-  </div>
-</div>
+<PageLoader />
 <div class="flex min-h-screen">
   <Header />
   <Sidebar />
@@ -151,7 +144,7 @@ import Header from "./Header.astro";
     document.getElementById("mobile-menu-toggle")?.classList.toggle("open");
 
     if (!open) animateMenuIn({ animateContent: true });
-    else animateMenuOut();
+    else animateMenuOut({ animateContent: true });
   };
 
   document

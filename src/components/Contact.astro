@@ -1,5 +1,7 @@
 <div id="contact" class="flex flex-col gap-2 text-base font-light">
-  <div>Say hello <span class="rotate-45">👋</span></div>
+  <div>
+    Say hello <span id="wave-emoji">👋</span>
+  </div>
   <div class="flex items-center gap-3">
     <a
       href="https://linkedin.com/in/juanabbona"
@@ -43,3 +45,55 @@
     <a href="mailto:hey@juanabbona.com"> hey@juanabbona.com </a>
   </div>
 </div>
+
+<style>
+  .wave {
+    animation-name: wave-animation;
+    animation-duration: 2s;
+    transform-origin: 70% 70%;
+    display: inline-block;
+  }
+
+  @keyframes wave-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("contact")?.addEventListener("mouseenter", () => {
+    // If the animation is already running, don't start it again
+    if (window.waveTimeoutRef) return;
+
+    // Start the animation
+    document.getElementById("wave-emoji")?.classList.add("wave");
+
+    // Clear the animation class after 2 seconds
+    window.waveTimeoutRef = setTimeout(() => {
+      document.getElementById("wave-emoji")?.classList.remove("wave");
+      window.waveTimeoutRef = null;
+    }, 2000);
+  });
+</script>
