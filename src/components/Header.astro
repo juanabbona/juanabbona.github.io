@@ -1,10 +1,5 @@
----
-import Menu from "./Menu.astro";
-import Contact from "./Contact.astro";
----
-
 <div
-  class="lg:hidden flex items-center gap-4 px-6 py-4 bg-sand border-b border-sand-dark z-50 fixed top-0 left-0 right-0 overflow-hidden"
+  class="lg:hidden flex items-center gap-4 px-6 py-4 bg-sand border-b border-sand-dark z-40 fixed top-0 left-0 right-0 overflow-hidden"
 >
   <button id="mobile-menu-toggle" class="menu-icon">
     <div class="line bg-brand-brown first"></div>
@@ -13,75 +8,6 @@ import Contact from "./Contact.astro";
   </button>
   <span class="text-xl">Juan Abbona</span>
 </div>
-
-<div
-  id="mobile-menu"
-  class="fixed top-0 bottom-0 flex-col justify-between w-full px-6 pl-[64px] py-8 pt-[82px] z-40"
-  style="display: none;"
->
-  <Menu />
-  <Contact />
-</div>
-
-<script>
-  import { timeline, spring, stagger } from "motion";
-
-  document
-    .getElementById("mobile-menu-toggle")
-    ?.addEventListener("click", () => {
-      const open = document
-        .getElementById("mobile-menu-toggle")
-        ?.classList.contains("open");
-
-      document.getElementById("mobile-menu-toggle")?.classList.toggle("open");
-
-      const body = document.querySelector("body");
-
-      if (!open) {
-        if (body) body.style.overflow = "hidden";
-
-        timeline([
-          ["#mobile-menu", { display: "flex" }],
-          [
-            "#content",
-            { opacity: 0, transform: "scale(.95)" },
-            { duration: 0.3, at: "<" },
-          ],
-          [
-            "#mobile-menu #menu-options > *",
-            { x: [-200, 0] },
-            { easing: spring(), delay: stagger(0.1), at: "<" },
-          ],
-          [
-            "#mobile-menu #contact",
-            { y: [100, 0] },
-            { easing: spring(), at: "<" },
-          ],
-        ]);
-      } else {
-        if (body) body.style.overflow = "unset";
-
-        timeline([
-          [
-            "#mobile-menu #menu-options > *",
-            { x: [0, -200] },
-            { easing: spring(), delay: stagger(0.1) },
-          ],
-          [
-            "#mobile-menu #contact",
-            { y: [0, 100] },
-            { easing: spring(), at: "<" },
-          ],
-          ["#mobile-menu", { display: "none" }, { at: "<" }],
-          [
-            "#content",
-            { opacity: 1, transform: "scale(1)" },
-            { duration: 0.3 },
-          ],
-        ]);
-      }
-    });
-</script>
 
 <style>
   .menu-icon {

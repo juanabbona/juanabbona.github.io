@@ -4,10 +4,11 @@ import Contact from "./Contact.astro";
 ---
 
 <div
-  class="hidden lg:flex flex-col justify-between w-[500px] py-24 px-14 fixed top-0 left-0 bottom-0 border-r bg-sand border-sand-dark"
+  id="menu"
+  class="hidden lg:flex flex-col justify-between w-[500px] px-6 pl-[64px] py-8 pt-[82px] lg:py-24 lg:px-14 fixed top-0 left-0 bottom-0 lg:border-r border-sand-dark"
 >
   <div>
-    <h1 class="text-5xl font-light mb-24">Juan Abbona</h1>
+    <h1 class="hidden lg:flex text-5xl font-light mb-24">Juan Abbona</h1>
     <Menu />
   </div>
   <Contact />

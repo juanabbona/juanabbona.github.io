@@ -15,8 +15,8 @@ import ToolChip from "../components/ToolChip.astro";
       <section
         class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
       >
-        <div class="flex gap-8">
-          <div class="flex flex-col gap-8">
+        <div class="flex">
+          <div class="flex flex-col gap-8 flex-1">
             <h3 class="text-lg font-medium">Hey there!</h3>
             <p class="text-base">
               I’m Juan, a software engineer with a passion for design based in
@@ -29,12 +29,10 @@ import ToolChip from "../components/ToolChip.astro";
               using Python and Django.
             </p>
           </div>
-          <div class="relative">
-            <img
-              src="/worldmap.svg"
-              alt="Uruguay in the world map"
-              class="absolute"
-            />
+          <div class="relative flex w-[240px]">
+            <div class="absolute w-[520px] top-[-56%]">
+              <img src="/worldmap.svg" alt="Uruguay in the world map" />
+            </div>
           </div>
         </div>
         <h3 class="text-lg font-medium text-center">

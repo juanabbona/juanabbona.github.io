@@ -3,13 +3,158 @@ import Sidebar from "./Sidebar.astro";
 import Header from "./Header.astro";
 ---
 
+<div
+  id="page-loader"
+  class="fixed top-0 right-0 bottom-0 left-0 bg-sand z-50 flex items-center justify-center"
+>
+  <div
+    class="border-4 border-sand-dark border-b-transparent border-l-transparent rounded-full w-[40px] h-[40px] animate-spin"
+  >
+  </div>
+</div>
 <div class="flex min-h-screen">
   <Header />
   <Sidebar />
   <div
     id="content"
-    class="flex flex-col items-center flex-1 mt-[58px] lg:mt-0 lg:ml-[500px]"
+    class="flex flex-col items-center flex-1 mt-[58px] lg:mt-0 lg:ml-[500px] overflow-x-clip"
+    style="opacity: 0;"
   >
     <slot />
   </div>
 </div>
+
+<script>
+  import resolveConfig from "tailwindcss/resolveConfig";
+  import tailwindConfig from "../../tailwind.config.mjs";
+
+  const twConfig = resolveConfig(tailwindConfig);
+
+  import { timeline, spring, stagger, type TimelineDefinition } from "motion";
+
+  const handlePageLoad = () => {
+    timeline([
+      ["#page-loader", { opacity: 0 }, { duration: 0.3 }],
+      ["#page-loader", { display: "none" }],
+      [
+        "#menu #menu-options > *",
+        { x: [-200, 0] },
+        { easing: spring(), delay: stagger(0.1), at: "<" },
+      ],
+      ["#menu #contact", { y: [200, 0] }, { easing: spring(), at: "<" }],
+      [
+        "#content",
+        { opacity: 1 },
+        { duration: 0.5, delay: 0.3, at: "<", easing: "ease-in" },
+      ],
+    ]);
+  };
+
+  addEventListener("load", handlePageLoad);
+
+  const handleWindowResize = (() => {
+    let prevWindowWidth = window.innerWidth;
+
+    return () => {
+      const windowWidth = window.innerWidth;
+      const breakpointWidth = parseInt(
+        twConfig.theme.screens.lg.replace("px", "")
+      );
+
+      if (windowWidth >= breakpointWidth && prevWindowWidth < breakpointWidth) {
+        animateMenuIn();
+      } else if (
+        windowWidth < breakpointWidth &&
+        prevWindowWidth >= breakpointWidth
+      ) {
+        document.getElementById("menu")?.style.removeProperty("display");
+      }
+
+      prevWindowWidth = windowWidth;
+    };
+  })();
+
+  addEventListener("resize", handleWindowResize);
+
+  const animateMenuIn = ({
+    animateContent,
+  }: { animateContent?: boolean } = {}) => {
+    const body = document.querySelector("body");
+
+    if (body) body.style.overflow = "hidden";
+
+    const sequence: TimelineDefinition = [];
+
+    if (animateContent)
+      sequence.push(
+        ["#content", { opacity: 0 }, { duration: 0.3, at: "<" }],
+        [
+          "#content",
+          { transform: ["scale(1)", "scale(.95)"] },
+          { easing: spring(), at: "<" },
+        ],
+        ["#content", { display: "none" }, { at: "<" }]
+      );
+
+    sequence.push(
+      ["#menu", { display: "flex" }],
+
+      [
+        "#menu #menu-options > *",
+        { x: [-200, 0] },
+        { easing: spring(), delay: stagger(0.1), at: "<" },
+      ],
+      ["#menu #contact", { y: [200, 0] }, { easing: spring(), at: "<" }]
+    );
+
+    timeline(sequence);
+  };
+
+  const animateMenuOut = ({
+    animateContent,
+  }: { animateContent?: boolean } = {}) => {
+    const body = document.querySelector("body");
+
+    if (body) body.style.overflow = "unset";
+
+    const sequence: TimelineDefinition = [];
+
+    sequence.push(
+      [
+        "#menu #menu-options > *",
+        { x: [0, -200] },
+        { easing: spring(), delay: stagger(0.1) },
+      ],
+      ["#menu #contact", { y: [0, 200] }, { easing: spring(), at: "<" }],
+      ["#menu", { display: "none" }, { at: "<" }]
+    );
+
+    if (animateContent)
+      sequence.push(
+        ["#content", { display: "flex" }, { at: "<" }],
+        ["#content", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#content",
+          { transform: ["scale(.95)", "scale(1)"] },
+          { easing: spring(), at: "<" },
+        ]
+      );
+
+    timeline(sequence);
+  };
+
+  const handleMenuToggleClick = () => {
+    const open = document
+      .getElementById("mobile-menu-toggle")
+      ?.classList.contains("open");
+
+    document.getElementById("mobile-menu-toggle")?.classList.toggle("open");
+
+    if (!open) animateMenuIn({ animateContent: true });
+    else animateMenuOut();
+  };
+
+  document
+    .getElementById("mobile-menu-toggle")
+    ?.addEventListener("click", handleMenuToggleClick);
+</script>
