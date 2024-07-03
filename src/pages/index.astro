@@ -3,6 +3,72 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Layout from "../components/Layout.astro";
 import ToolChip from "../components/ToolChip.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+
+const WORK_EXPERIENCE = [
+  {
+    company: "Ampla",
+    companyLink: "https://getampla.com/",
+    position: "Senior Software Engineer",
+    dates: [2021, "Present"],
+    accomplishments: [
+      "Collaborated in designing and building a banking solution from scratch that integrated with existing products to allow a more transparent interaction with existing customers and led to an increase in customer base growth.",
+      "Executed a frontend migration from JavaScript to TypeScript using an incremental hybrid approach that resulted in a decrease of bugs that made their way to production; this migration was also key to make future refactors necessary to grow the platform much less painful.",
+      "Executed multiple frontend dependency upgrade efforts to keep the codebase up-to-date with the latest standards.",
+      "Pushed for the creation of a component library and later worked on its implementation and integration into the existing products, the component library made it easier for engineers to build new features and made the platform much more cohesive.",
+      "Designed the UI for new products and features in Figma while the company was still in its earlier stages and didn’t have a dedicated design team.",
+      "Integrated with third-party APIs such as Intercom, Heap, Plaid, Codat, Fivetran among others.",
+      "Worked on implementing backend features using Python, Django and DRF.",
+    ],
+  },
+  {
+    company: "CareerVillage.org",
+    companyLink: "https://www.careervillage.org/",
+    position: "Software Engineer",
+    dates: [2020, 2021],
+    accomplishments: [
+      "Collaborated in the implementation of a translation feature using Google’s Cloud Translation API that allowed a partnership with California based schools.",
+      "Implemented E2E tests for key features of the site using Cypress that prevented bugs from making it to the production site.",
+      "Worked on tech-debt, fixing bugs and implementing new features using React, Django and Jenkins for the CI/CD pipelines.",
+    ],
+    outsourcedBy: "sophilabs",
+    outsourcedByLink: "https://sophilabs.co/",
+  },
+  {
+    company: "GetActual",
+    companyLink: "https://getactual.io/",
+    position: "Software Engineer",
+    dates: [2020, 2021],
+    accomplishments: [
+      "Built an MVP for a film production company from scratch using React for the frontend and Django for the backend.",
+      "Integrated with Stripe to provide subscription plans to users.",
+    ],
+    outsourcedBy: "sophilabs",
+    outsourcedByLink: "https://sophilabs.co/",
+  },
+  {
+    company: "Factr",
+    companyLink: "https://factr.com/",
+    position: "Software Engineer",
+    dates: [2019, 2020],
+    accomplishments: [
+      "Collaborated in the implementation of new features for a social media platform’s website using React and its mobile app using React Native.",
+    ],
+    outsourcedBy: "sophilabs",
+    outsourcedByLink: "https://sophilabs.co/",
+  },
+  {
+    company: "Datalogic",
+    location: "Montevideo, Uruguay",
+    position: "Software Engineer",
+    dates: [2016, 2019],
+    accomplishments: [
+      "Developed HR solutions using GeneXus, Java and JavaScript.",
+      "Communicated with stakeholders and collaborated on product design.",
+      "Collaborated with the company’s IT team as well as with customers' IT teams.",
+    ],
+  },
+];
 ---
 
 <!doctype html>
@@ -35,7 +101,7 @@ import ToolChip from "../components/ToolChip.astro";
               class="relative w-[520px] mt-[-175px] md:mt-[-56%] md:ml-[-40px]"
             >
               <div
-                class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-sand from-25% via-50% via-transparent md:hidden"
+                class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-brand-sand-light from-25% via-50% via-transparent md:hidden"
               >
               </div>
               <img src="/worldmap.svg" alt="Uruguay in the world map" />
@@ -63,7 +129,37 @@ import ToolChip from "../components/ToolChip.astro";
           <ToolChip tool="PostgreSQL" />
         </div>
       </section>
-      <section id="experience" class="min-h-screen">experience!</section>
+      <section
+        id="experience"
+        class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
+      >
+        <div class="flex flex-col gap-4">
+          {
+            WORK_EXPERIENCE.map(
+              ({
+                company,
+                companyLink,
+                position,
+                location,
+                dates,
+                accomplishments,
+                outsourcedBy,
+                outsourcedByLink,
+              }) => (
+                <ExperienceItem
+                  company={company}
+                  companyLink={companyLink}
+                  position={position}
+                  dates={dates}
+                  accomplishments={accomplishments}
+                  outsourcedBy={outsourcedBy}
+                  outsourcedByLink={outsourcedByLink}
+                />
+              )
+            )
+          }
+        </div>
+      </section>
       <section id="blog" class="min-h-screen">blog!</section>
     </Layout>
   </body>

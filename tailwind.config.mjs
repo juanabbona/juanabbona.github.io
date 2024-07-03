@@ -6,9 +6,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        sand: "#FDF8EC",
-        "sand-dark": "#F9EAC8",
+        "brand-sand-light": "#FDF8EC",
+        "brand-sand": "#FBF2DE",
+        "brand-sand-dark": "#F9EAC8",
         "brand-brown": "#3D2C2E",
+        "brand-orange": "#F58549",
       },
       fontFamily: {
         sans: ["Raleway Variable", ...defaultTheme.fontFamily.sans],

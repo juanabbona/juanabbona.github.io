@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"button">;
+
+const props = Astro.props;
+---
+
+<button
+  class="menu-option font-light text-xl px-6 py-4 rounded-full"
+  {...props}
+>
+  <slot />
+</button>
+
+<style>
+  .menu-option[data-active="false"] {
+    @apply bg-transparent transition-colors duration-500;
+  }
+
+  .menu-option[data-active="false"]:hover {
+    @apply bg-brand-sand;
+  }
+</style>

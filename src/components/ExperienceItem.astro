@@ -1,0 +1,38 @@
+---
+const {
+  company,
+  companyLink,
+  position,
+  dates,
+  accomplishments,
+  outsourcedBy,
+  outsourcedByLink,
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-2 pb-4 border-b border-brand-sand-dark">
+  <div class="flex items-center gap-2">
+    <span class="text-lg font-medium">{position}</span>
+    <div class="w-[1px] h-[20px] bg-brand-sand-dark rounded-full"></div>
+    <a
+      href={companyLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-lg text-brand-orange"
+    >
+      {company}
+    </a>
+  </div>
+  <span class="text-sm text-brand-brown">
+    {dates.join(" - ")}
+  </span>
+  <div>
+    <ul class="list-disc pl-5">
+      {
+        accomplishments.map((accomplishment: string) => (
+          <li>{accomplishment}</li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
