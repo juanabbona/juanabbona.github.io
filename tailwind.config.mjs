@@ -15,6 +15,9 @@ export default {
       fontFamily: {
         sans: ["Raleway Variable", ...defaultTheme.fontFamily.sans],
       },
+      boxShadow: {
+        xl: "0 0px 50px -15px rgba(61, 44, 46, 0.1)",
+      },
     },
   },
   plugins: [],

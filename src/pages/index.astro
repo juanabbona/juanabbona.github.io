@@ -1,91 +1,100 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import Layout from "../components/Layout.astro";
-import ToolChip from "../components/ToolChip.astro";
-import ExperienceItem from "../components/ExperienceItem.astro";
-
-const WORK_EXPERIENCE = [
-  {
-    company: "Ampla",
-    companyLink: "https://getampla.com/",
-    position: "Senior Software Engineer",
-    dates: [2021, "Present"],
-    accomplishments: [
-      "Collaborated in designing and building a banking solution from scratch that integrated with existing products to allow a more transparent interaction with existing customers and led to an increase in customer base growth.",
-      "Executed a frontend migration from JavaScript to TypeScript using an incremental hybrid approach that resulted in a decrease of bugs that made their way to production; this migration was also key to make future refactors necessary to grow the platform much less painful.",
-      "Executed multiple frontend dependency upgrade efforts to keep the codebase up-to-date with the latest standards.",
-      "Pushed for the creation of a component library and later worked on its implementation and integration into the existing products, the component library made it easier for engineers to build new features and made the platform much more cohesive.",
-      "Designed the UI for new products and features in Figma while the company was still in its earlier stages and didn’t have a dedicated design team.",
-      "Integrated with third-party APIs such as Intercom, Heap, Plaid, Codat, Fivetran among others.",
-      "Worked on implementing backend features using Python, Django and DRF.",
-    ],
-  },
-  {
-    company: "CareerVillage.org",
-    companyLink: "https://www.careervillage.org/",
-    position: "Software Engineer",
-    dates: [2020, 2021],
-    accomplishments: [
-      "Collaborated in the implementation of a translation feature using Google’s Cloud Translation API that allowed a partnership with California based schools.",
-      "Implemented E2E tests for key features of the site using Cypress that prevented bugs from making it to the production site.",
-      "Worked on tech-debt, fixing bugs and implementing new features using React, Django and Jenkins for the CI/CD pipelines.",
-    ],
-    outsourcedBy: "sophilabs",
-    outsourcedByLink: "https://sophilabs.co/",
-  },
-  {
-    company: "GetActual",
-    companyLink: "https://getactual.io/",
-    position: "Software Engineer",
-    dates: [2020, 2021],
-    accomplishments: [
-      "Built an MVP for a film production company from scratch using React for the frontend and Django for the backend.",
-      "Integrated with Stripe to provide subscription plans to users.",
-    ],
-    outsourcedBy: "sophilabs",
-    outsourcedByLink: "https://sophilabs.co/",
-  },
-  {
-    company: "Factr",
-    companyLink: "https://factr.com/",
-    position: "Software Engineer",
-    dates: [2019, 2020],
-    accomplishments: [
-      "Collaborated in the implementation of new features for a social media platform’s website using React and its mobile app using React Native.",
-    ],
-    outsourcedBy: "sophilabs",
-    outsourcedByLink: "https://sophilabs.co/",
-  },
-  {
-    company: "Datalogic",
-    location: "Montevideo, Uruguay",
-    position: "Software Engineer",
-    dates: [2016, 2019],
-    accomplishments: [
-      "Developed HR solutions using GeneXus, Java and JavaScript.",
-      "Communicated with stakeholders and collaborated on product design.",
-      "Collaborated with the company’s IT team as well as with customers' IT teams.",
-    ],
-  },
-];
+import Contact from "../components/Contact.astro";
+import ToolMarquee from "../components/ToolMarquee.astro";
+import PageLoader from "../components/PageLoader.astro";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script>
+      import { shuffle } from "lodash";
+      import { spring, timeline, type TimelineSegment } from "motion";
+
+      addEventListener("load", () => {
+        timeline([
+          ["#page-loader", { opacity: 0 }, { duration: 0.75, delay: 0.5 }],
+          ["#page-loader", { display: "none" }],
+          [
+            "#worldmap",
+            { opacity: [0, 1] },
+            { duration: 0.75, at: "-.5", easing: "linear" },
+          ],
+          [
+            "#content",
+            { x: [-650, 0] },
+            { at: "<", easing: spring({ mass: 2 }) },
+          ],
+          ["#title", { opacity: [0, 1] }, { duration: 0.75, at: "-2" }],
+          ["#about", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
+          [
+            "#experience-title",
+            { opacity: [0, 1] },
+            { duration: 0.75, at: "-.5" },
+          ],
+          ...shuffle(document.querySelectorAll(".tool-chip")).map(
+            (element, index) =>
+              [
+                element,
+                { opacity: [0, 1], scale: [0.75, 1] },
+                {
+                  duration: 0.5,
+                  at: index ? "<" : "-1",
+                  delay: index * 0.05,
+                },
+              ] as TimelineSegment
+          ),
+          [
+            "#contact-container",
+            { y: [300, 0] },
+            { easing: spring(), at: "-1" },
+          ],
+        ]);
+
+        const WAVE_TIMES = [20000, 35000, 10000, 15000, 40000];
+
+        const wave = () => {
+          // If the animation is already running, don't start it again
+          if (!window.waveTimeoutRef) {
+            // Start the animation
+            document.getElementById("wave-emoji")?.classList.add("wave");
+
+            // Clear the animation class after 2 seconds
+            window.waveTimeoutRef = setTimeout(() => {
+              document.getElementById("wave-emoji")?.classList.remove("wave");
+              window.waveTimeoutRef = null;
+            }, 2000);
+          }
+
+          const nextWave = shuffle(WAVE_TIMES)[0];
+
+          setTimeout(wave, nextWave);
+        };
+
+        setTimeout(() => {
+          wave();
+        }, 3000);
+      });
+    </script>
   </head>
   <body>
-    <Layout>
-      <section
-        id="about"
-        class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
+    <PageLoader />
+    <div class="flex gap-8 min-h-screen overflow-clip">
+      <div
+        id="content"
+        class="w-full md:w-[650px] p-8 md:p-16 flex md:shadow-xl z-50 bg-brand-sand-light"
+        style="clip-path: inset(0px -30px 0px 0px);"
       >
-        <div class="flex flex-col md:flex-row">
-          <div class="flex flex-col gap-8 flex-1">
-            <h3 class="text-lg font-medium">Hey there!</h3>
-            <p class="text-base">
+        <div
+          class="flex flex-col justify-between gap-16 w-full pb-[153px] md:pb-0"
+        >
+          <div class="flex flex-col gap-8">
+            <h1 id="title" class="text-5xl font-light md:mb-6">Juan Abbona</h1>
+
+            <p id="about" class="text-base">
               I’m Juan, a software engineer with a passion for design based in
               Montevideo, Uruguay.
               <br />
@@ -95,72 +104,37 @@ const WORK_EXPERIENCE = [
               TypeScript although I also have plenty of experience on backend development
               using Python and Django.
             </p>
-          </div>
-          <div class="w-[240px] -z-10">
-            <div
-              class="relative w-[520px] mt-[-175px] md:mt-[-56%] md:ml-[-40px]"
-            >
+            <div class="w-[240px] -z-10 md:hidden">
               <div
-                class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-brand-sand-light from-25% via-50% via-transparent md:hidden"
+                class="relative w-[520px] mt-[-175px] md:mt-[-56%] md:ml-[-40px]"
               >
+                <div
+                  class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-brand-sand-light from-25% via-50% via-transparent md:hidden"
+                >
+                </div>
+                <img src="/worldmap.svg" alt="Uruguay in the world map" />
               </div>
-              <img src="/worldmap.svg" alt="Uruguay in the world map" />
             </div>
+            <h3 id="experience-title" class="text-base">
+              I’m experienced working with
+            </h3>
+            <ToolMarquee />
+          </div>
+          <div
+            id="contact-container"
+            class="fixed md:relative left-0 right-0 -bottom-8 p-8 pb-16 md:p-0 md:pb-0 shadow-xl md:shadow-none bg-brand-sand-light"
+          >
+            <Contact />
           </div>
         </div>
-        <h3 class="text-lg font-medium text-center md:mt-16">
-          I’m experienced working with
-        </h3>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <ToolChip tool="React" />
-          <ToolChip tool="React Native" />
-          <ToolChip tool="TypeScript" />
-          <ToolChip tool="JavaScript" />
-          <ToolChip tool="Material UI" />
-          <ToolChip tool="Next.js" />
-          <ToolChip tool="TanStack Query" />
-          <ToolChip tool="Tailwind CSS" />
-          <ToolChip tool="Nx" />
-          <ToolChip tool="Storybook" />
-          <ToolChip tool="Git" />
-          <ToolChip tool="Docker" />
-          <ToolChip tool="Python" />
-          <ToolChip tool="Django" />
-          <ToolChip tool="PostgreSQL" />
-        </div>
-      </section>
-      <section
-        id="experience"
-        class="flex flex-col gap-8 px-6 py-6 xl:px-0 w-full xl:w-[660px] lg:py-[110px] min-h-screen"
-      >
-        <div class="flex flex-col gap-4">
-          {
-            WORK_EXPERIENCE.map(
-              ({
-                company,
-                companyLink,
-                position,
-                location,
-                dates,
-                accomplishments,
-                outsourcedBy,
-                outsourcedByLink,
-              }) => (
-                <ExperienceItem
-                  company={company}
-                  companyLink={companyLink}
-                  position={position}
-                  dates={dates}
-                  accomplishments={accomplishments}
-                  outsourcedBy={outsourcedBy}
-                  outsourcedByLink={outsourcedByLink}
-                />
-              )
-            )
-          }
-        </div>
-      </section>
-      <section id="blog" class="min-h-screen">blog!</section>
-    </Layout>
+      </div>
+      <div id="worldmap" class="flex flex-1 items-center justify-end py-8">
+        <img
+          src="/worldmap-lg.svg"
+          alt="Uruguay in the world map"
+          class="w-full h-full -mt-28 object-cover object-left-bottom"
+        />
+      </div>
+    </div>
   </body>
 </html>
