@@ -10,13 +10,14 @@ export default {
         "brand-sand": "#FBF2DE",
         "brand-sand-dark": "#F9EAC8",
         "brand-brown": "#3D2C2E",
+        "brand-orange-light": "#FCD8C5",
         "brand-orange": "#F58549",
       },
       fontFamily: {
         sans: ["Raleway Variable", ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
-        xl: "0 0px 50px -15px rgba(61, 44, 46, 0.1)",
+        xl: "0 0px 50px -15px rgba(61, 44, 46, 0.15)",
       },
     },
   },

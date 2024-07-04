@@ -2,82 +2,23 @@
 import ToolChip from "./ToolChip.astro";
 ---
 
-<div id="tool-marquee" class="-mx-4 overflow-hidden">
-  <div class="flex flex-wrap justify-center gap-4">
-    <ToolChip tool="React" />
-    <ToolChip tool="React Native" />
-    <ToolChip tool="TypeScript" />
-    <ToolChip tool="JavaScript" />
-    <ToolChip tool="Material UI" />
-    <ToolChip tool="Next.js" />
-    <ToolChip tool="TanStack Query" />
-    <ToolChip tool="Tailwind CSS" />
-    <ToolChip tool="Nx" />
-    <ToolChip tool="Storybook" />
-    <ToolChip tool="Git" />
-    <ToolChip tool="Docker" />
-    <ToolChip tool="Python" />
-    <ToolChip tool="Django" />
-    <ToolChip tool="PostgreSQL" />
-  </div>
+<div
+  id="tool-marquee"
+  class="flex flex-wrap justify-center gap-3 md:gap-4 -mx-4 md:-mx-4 overflow-hidden"
+>
+  <ToolChip tool="React" />
+  <ToolChip tool="React Native" />
+  <ToolChip tool="TypeScript" />
+  <ToolChip tool="JavaScript" />
+  <ToolChip tool="Material UI" />
+  <ToolChip tool="Next.js" />
+  <ToolChip tool="TanStack Query" />
+  <ToolChip tool="Tailwind CSS" />
+  <ToolChip tool="Nx" />
+  <ToolChip tool="Storybook" />
+  <ToolChip tool="Git" />
+  <ToolChip tool="Docker" />
+  <ToolChip tool="Python" />
+  <ToolChip tool="Django" />
+  <ToolChip tool="PostgreSQL" />
 </div>
-
-<script>
-  import { shuffle } from "lodash";
-
-  import { animate, spring, stagger, timeline } from "motion";
-
-  // import { Marquee, loop } from "dynamic-marquee";
-
-  // const toolMarquee = document.getElementById("tool-marquee");
-
-  // toolMarquee
-  //   ?.querySelectorAll<HTMLElement>(".marquee > div")
-  //   .forEach((element, index) => {
-  //     animate(
-  //       element,
-  //       {
-  //         x: index
-  //           ? [
-  //               0,
-  //               element.clientWidth -
-  //                 (element?.parentElement?.clientWidth || 0),
-  //             ]
-  //           : [
-  //               0,
-  //               (element.clientWidth -
-  //                 (element?.parentElement?.clientWidth || 0)) *
-  //                 -1,
-  //             ],
-  //       },
-  //       {
-  //         duration: 7,
-  //         direction: "alternate",
-  //         repeat: Infinity,
-  //         easing: "ease-in-out",
-  //       }
-  //     );
-  //   });
-</script>
-
-<!-- <style>
-  .marquee {
-    white-space: nowrap;
-    /* overflow: hidden; */
-    position: relative;
-  }
-
-  .marquee > div {
-    display: flex;
-    animation: marquee 15s linear infinite;
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-</style> -->

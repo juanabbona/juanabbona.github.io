@@ -16,20 +16,15 @@ import PageLoader from "../components/PageLoader.astro";
 
       addEventListener("load", () => {
         timeline([
-          ["#page-loader", { opacity: 0 }, { duration: 0.75, delay: 0.5 }],
+          ["#page-loader", { opacity: 0 }, { duration: 1, delay: 0.5 }],
           ["#page-loader", { display: "none" }],
+          ["#title", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
+          ["#about", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
           [
             "#worldmap",
             { opacity: [0, 1] },
             { duration: 0.75, at: "-.5", easing: "linear" },
           ],
-          [
-            "#content",
-            { x: [-650, 0] },
-            { at: "<", easing: spring({ mass: 2 }) },
-          ],
-          ["#title", { opacity: [0, 1] }, { duration: 0.75, at: "-2" }],
-          ["#about", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
           [
             "#experience-title",
             { opacity: [0, 1] },
@@ -47,10 +42,11 @@ import PageLoader from "../components/PageLoader.astro";
                 },
               ] as TimelineSegment
           ),
+          ["#contact-container", { x: ["0%", "-50%"] }, { at: "-1" }],
           [
             "#contact-container",
             { y: [300, 0] },
-            { easing: spring(), at: "-1" },
+            { easing: spring(), at: "<" },
           ],
         ]);
 
@@ -80,21 +76,22 @@ import PageLoader from "../components/PageLoader.astro";
       });
     </script>
   </head>
-  <body>
+  <body
+    class="bg-brand-sand-light md:bg-gradient-to-br md:from-brand-orange-light md:to-brand-sand-dark"
+  >
     <PageLoader />
-    <div class="flex gap-8 min-h-screen overflow-clip">
+    <div class="flex md:h-auto md:min-h-screen overflow-clip xl:p-12 2xl:p-56">
       <div
         id="content"
-        class="w-full md:w-[650px] p-8 md:p-16 flex md:shadow-xl z-50 bg-brand-sand-light"
-        style="clip-path: inset(0px -30px 0px 0px);"
+        class="flex w-full md:w-[650px] p-8 md:p-16 pb-36 md:pb-16 z-50 shadow-xl bg-brand-sand-light rounded-none md:rounded-2xl overflow-clip"
       >
-        <div
-          class="flex flex-col justify-between gap-16 w-full pb-[153px] md:pb-0"
-        >
-          <div class="flex flex-col gap-8">
-            <h1 id="title" class="text-5xl font-light md:mb-6">Juan Abbona</h1>
+        <div class="flex flex-col justify-between gap-16 w-full">
+          <div class="flex flex-col gap-4 md:gap-8">
+            <h1 id="title" class="text-3xl md:text-5xl font-light md:mb-6">
+              Juan Abbona
+            </h1>
 
-            <p id="about" class="text-base">
+            <p id="about" class="text-sm md:text-base">
               I’m Juan, a software engineer with a passion for design based in
               Montevideo, Uruguay.
               <br />
@@ -104,36 +101,28 @@ import PageLoader from "../components/PageLoader.astro";
               TypeScript although I also have plenty of experience on backend development
               using Python and Django.
             </p>
-            <div class="w-[240px] -z-10 md:hidden">
+            <div
+              id="worldmap"
+              class="relative w-[522px] h-[342px] mt-[-230px] md:mt-[-230px] md:ml-[200px] -mb-3 md:-mb-6 -z-10"
+            >
               <div
-                class="relative w-[520px] mt-[-175px] md:mt-[-56%] md:ml-[-40px]"
+                class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-brand-sand-light from-30% via-50% via-transparent"
               >
-                <div
-                  class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-br from-brand-sand-light from-25% via-50% via-transparent md:hidden"
-                >
-                </div>
-                <img src="/worldmap.svg" alt="Uruguay in the world map" />
               </div>
+              <img src="/worldmap.svg" alt="Uruguay in the world map" />
             </div>
-            <h3 id="experience-title" class="text-base">
+            <h3 id="experience-title" class="text-sm md:text-base">
               I’m experienced working with
             </h3>
             <ToolMarquee />
           </div>
           <div
             id="contact-container"
-            class="fixed md:relative left-0 right-0 -bottom-8 p-8 pb-16 md:p-0 md:pb-0 shadow-xl md:shadow-none bg-brand-sand-light"
+            class="fixed md:relative left-[50%] translate-x-[-50%] bottom-8 px-8 py-4 md:p-0 rounded-full shadow-xl md:shadow-none bg-gradient-to-br to-brand-orange-light from-brand-sand-dark md:bg-none"
           >
             <Contact />
           </div>
         </div>
-      </div>
-      <div id="worldmap" class="flex flex-1 items-center justify-end py-8">
-        <img
-          src="/worldmap-lg.svg"
-          alt="Uruguay in the world map"
-          class="w-full h-full -mt-28 object-cover object-left-bottom"
-        />
       </div>
     </div>
   </body>
