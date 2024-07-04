@@ -43,11 +43,7 @@ import PageLoader from "../components/PageLoader.astro";
               ] as TimelineSegment
           ),
           ["#contact-container", { x: ["0%", "-50%"] }, { at: "-1" }],
-          [
-            "#contact-container",
-            { y: [300, 0] },
-            { easing: spring(), at: "<" },
-          ],
+          ["#contact-container", { y: [300, 0] }, { easing: spring() }],
         ]);
 
         const WAVE_TIMES = [20000, 35000, 10000, 15000, 40000];
@@ -80,10 +76,12 @@ import PageLoader from "../components/PageLoader.astro";
     class="bg-brand-sand-light md:bg-gradient-to-br md:from-brand-orange-light md:to-brand-sand-dark"
   >
     <PageLoader />
-    <div class="flex md:h-auto md:min-h-screen overflow-clip xl:p-12 2xl:p-56">
+    <div
+      class="flex items-stretch 2xl:items-center md:h-auto md:min-h-screen overflow-clip p-0 md:p-8 xl:p-12 2xl:px-56"
+    >
       <div
         id="content"
-        class="flex w-full md:w-[650px] p-8 md:p-16 pb-36 md:pb-16 z-50 shadow-xl bg-brand-sand-light rounded-none md:rounded-2xl overflow-clip"
+        class="flex w-full md:w-[650px] p-8 md:p-16 pb-36 md:pb-16 2xl:max-h-[950px] z-50 shadow-xl bg-brand-sand-light rounded-none md:rounded-2xl overflow-clip"
       >
         <div class="flex flex-col justify-between gap-16 w-full">
           <div class="flex flex-col gap-4 md:gap-8">
@@ -118,7 +116,7 @@ import PageLoader from "../components/PageLoader.astro";
           </div>
           <div
             id="contact-container"
-            class="fixed md:relative left-[50%] translate-x-[-50%] bottom-8 px-8 py-4 md:p-0 rounded-full shadow-xl md:shadow-none bg-gradient-to-br to-brand-orange-light from-brand-sand-dark md:bg-none"
+            class="fixed md:relative left-[50%] translate-x-[-50%] bottom-8 md:bottom-0 px-8 py-4 md:p-0 rounded-full shadow-xl md:shadow-none bg-gradient-to-br to-brand-orange-light from-brand-sand-dark md:bg-none"
           >
             <Contact />
           </div>
