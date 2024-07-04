@@ -1,99 +1,60 @@
-<div id="contact" class="flex flex-col gap-2 text-sm md:text-base">
-  <span>
-    Say hello <span id="wave-emoji">👋</span>
-  </span>
-  <div class="flex items-center gap-3 w-fit">
-    <a
-      href="https://linkedin.com/in/juanabbona"
-      target="_blank"
-      class="hover:scale-110 transition-transform duration-300 ease-in-out"
-    >
-      <span class="sr-only">Go to Juan Abbona's LinkedIn profile</span>
-      <svg
-        width="25"
-        height="25"
-        viewBox="0 0 100 100"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+<div
+  id="contact-container"
+  class="fixed md:relative left-[50%] translate-x-[-50%] bottom-8 md:bottom-0 px-8 py-4 md:p-0 rounded-full shadow-xl md:shadow-none bg-gradient-to-br to-brand-orange-light from-brand-sand-dark md:bg-none"
+>
+  <div id="contact" class="flex flex-col gap-2 text-sm md:text-base">
+    <span>
+      Say hello <span id="wave-emoji">👋</span>
+    </span>
+    <div class="flex items-center gap-3 w-fit">
+      <a
+        href="https://linkedin.com/in/juanabbona"
+        target="_blank"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out"
       >
-        <g clip-path="url(#clip0_251_12)">
-          <path
-            d="M88.0952 0H11.9048C5.33333 0 0 5.33333 0 11.9048V88.0952C0 94.6667 5.33333 100 11.9048 100H88.0952C94.6667 100 100 94.6667 100 88.0952V11.9048C100 5.33333 94.6667 0 88.0952 0ZM30.9524 38.0952V83.3333H16.6667V38.0952H30.9524ZM16.6667 24.9286C16.6667 21.5952 19.5238 19.0476 23.8095 19.0476C28.0952 19.0476 30.7857 21.5952 30.9524 24.9286C30.9524 28.2619 28.2857 30.9524 23.8095 30.9524C19.5238 30.9524 16.6667 28.2619 16.6667 24.9286ZM83.3333 83.3333H69.0476C69.0476 83.3333 69.0476 61.2857 69.0476 59.5238C69.0476 54.7619 66.6667 50 60.7143 49.9048H60.5238C54.7619 49.9048 52.381 54.8095 52.381 59.5238C52.381 61.6905 52.381 83.3333 52.381 83.3333H38.0952V38.0952H52.381V44.1905C52.381 44.1905 56.9762 38.0952 66.2143 38.0952C75.6667 38.0952 83.3333 44.5952 83.3333 57.7619V83.3333Z"
-            fill="currentColor"></path>
-        </g>
-        <defs>
-          <clipPath id="clip0_251_12">
-            <rect width="100" height="100" fill="white"></rect>
-          </clipPath>
-        </defs>
-      </svg>
-    </a>
-    <a
-      href="https://github.com/juanabbona"
-      target="_blank"
-      class="hover:scale-110 transition-transform duration-300 ease-in-out"
-    >
-      <span class="sr-only">Go to Juan Abbona's GitHub profile</span>
-      <svg viewBox="0 0 16 16" aria-hidden="true" width="25" height="25"
-        ><path
-          fill="currentColor"
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-        ></path></svg
+        <span class="sr-only">Go to Juan Abbona's LinkedIn profile</span>
+        <svg
+          width="25"
+          height="25"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_251_12)">
+            <path
+              d="M88.0952 0H11.9048C5.33333 0 0 5.33333 0 11.9048V88.0952C0 94.6667 5.33333 100 11.9048 100H88.0952C94.6667 100 100 94.6667 100 88.0952V11.9048C100 5.33333 94.6667 0 88.0952 0ZM30.9524 38.0952V83.3333H16.6667V38.0952H30.9524ZM16.6667 24.9286C16.6667 21.5952 19.5238 19.0476 23.8095 19.0476C28.0952 19.0476 30.7857 21.5952 30.9524 24.9286C30.9524 28.2619 28.2857 30.9524 23.8095 30.9524C19.5238 30.9524 16.6667 28.2619 16.6667 24.9286ZM83.3333 83.3333H69.0476C69.0476 83.3333 69.0476 61.2857 69.0476 59.5238C69.0476 54.7619 66.6667 50 60.7143 49.9048H60.5238C54.7619 49.9048 52.381 54.8095 52.381 59.5238C52.381 61.6905 52.381 83.3333 52.381 83.3333H38.0952V38.0952H52.381V44.1905C52.381 44.1905 56.9762 38.0952 66.2143 38.0952C75.6667 38.0952 83.3333 44.5952 83.3333 57.7619V83.3333Z"
+              fill="currentColor"></path>
+          </g>
+          <defs>
+            <clipPath id="clip0_251_12">
+              <rect width="100" height="100" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+      <a
+        href="https://github.com/juanabbona"
+        target="_blank"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out"
       >
-    </a>
-    <div class="h-4 border-r border-brand-brown"></div>
-    <a href="mailto:hey@juanabbona.com"> hey@juanabbona.com </a>
+        <span class="sr-only">Go to Juan Abbona's GitHub profile</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true" width="25" height="25"
+          ><path
+            fill="currentColor"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+          ></path></svg
+        >
+      </a>
+      <div class="h-4 border-r border-brand-brown"></div>
+      <a href="mailto:hey@juanabbona.com"> hey@juanabbona.com </a>
+    </div>
   </div>
 </div>
 
-<style>
-  .wave {
-    animation-name: wave-animation;
-    animation-duration: 2s;
-    transform-origin: 70% 70%;
-    display: inline-block;
-  }
-
-  @keyframes wave-animation {
-    0% {
-      transform: rotate(0deg);
-    }
-    10% {
-      transform: rotate(14deg);
-    }
-    20% {
-      transform: rotate(-8deg);
-    }
-    30% {
-      transform: rotate(14deg);
-    }
-    40% {
-      transform: rotate(-4deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    60% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-</style>
-
 <script>
+  import { waveAnimation } from "../utils/animations";
+
   document.getElementById("contact")?.addEventListener("mouseenter", () => {
-    // If the animation is already running, don't start it again
-    if (window.waveTimeoutRef) return;
-
-    // Start the animation
-    document.getElementById("wave-emoji")?.classList.add("wave");
-
-    // Clear the animation class after 2 seconds
-    window.waveTimeoutRef = setTimeout(() => {
-      document.getElementById("wave-emoji")?.classList.remove("wave");
-      window.waveTimeoutRef = null;
-    }, 2000);
+    waveAnimation();
   });
 </script>

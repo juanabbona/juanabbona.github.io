@@ -1,0 +1,122 @@
+---
+const TOOLS = [
+  {
+    name: "React",
+    url: "https://reactjs.org/",
+    color: "#beecfb",
+    icon: "/icons/react.svg",
+  },
+  {
+    name: "React Native",
+    url: "https://reactnative.dev/",
+    color: "#cbced8",
+    icon: "/icons/react-native.svg",
+  },
+  {
+    name: "TypeScript",
+    url: "https://www.typescriptlang.org/",
+    color: "#b9d2e6",
+    icon: "/icons/typescript.svg",
+  },
+  {
+    name: "JavaScript",
+    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    color: "#fbef8e",
+    icon: "/icons/javascript.svg",
+  },
+  {
+    name: "Material UI",
+    url: "https://material-ui.com/",
+    color: "#b2d8ff",
+    icon: "/icons/material-ui.svg",
+  },
+  {
+    name: "Next.js",
+    url: "https://nextjs.org/",
+    color: "#cccccc",
+    icon: "/icons/next-js.svg",
+  },
+  {
+    name: "TanStack Query",
+    url: "https://tanstack.com/query",
+    color: "#ffc5cb",
+    icon: "/icons/tanstack-query.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    url: "https://tailwindcss.com/",
+    color: "#c3ebfc",
+    icon: "/icons/tailwind-css.svg",
+  },
+  {
+    name: "Nx",
+    url: "https://nx.dev/",
+    color: "#afbbd9",
+    icon: "/icons/nx.svg",
+  },
+  {
+    name: "Figma",
+    url: "https://figma.com/",
+    color: "#e3cdff",
+    icon: "/icons/figma.svg",
+  },
+  {
+    name: "Storybook",
+    url: "https://storybook.js.org/",
+    color: "#fec7da",
+    icon: "/icons/storybook.svg",
+  },
+  {
+    name: "Git",
+    url: "https://git-scm.com/",
+    color: "#fac4c0",
+    icon: "/icons/git.svg",
+  },
+  {
+    name: "Docker",
+    url: "https://www.docker.com/",
+    color: "#bbd0f9",
+    icon: "/icons/docker.svg",
+  },
+  {
+    name: "Python",
+    url: "https://www.python.org/",
+    color: "#b8d2e8",
+    icon: "/icons/python.svg",
+  },
+  {
+    name: "Django",
+    url: "https://www.djangoproject.com/",
+    color: "#93ecc9",
+    icon: "/icons/django.svg",
+  },
+  {
+    name: "PostgreSQL",
+    url: "https://www.postgresql.org/",
+    color: "#b9d2e6",
+    icon: "/icons/postgresql.svg",
+  },
+];
+---
+
+<div
+  id="tool-marquee"
+  class="flex flex-wrap justify-center gap-3 md:gap-4 -mx-4 md:-mx-4 overflow-hidden"
+>
+  {
+    TOOLS.map(({ name, url, color, icon }) => (
+      <a
+        href={url}
+        target="_blank"
+        class="tool-chip flex items-center rounded-full text-xs md:text-sm gap-1 md:gap-2 text-black p-1 pr-2 md:pr-3 whitespace-nowrap hover:scale-110 transition-transform duration-300 ease-in-out"
+        style={`background-color: ${color}`}
+      >
+        <div
+          class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] rounded-full"
+          style={`background: url('${icon}') no-repeat center;`}
+        />
+        {name}
+      </a>
+    ))
+  }
+</div>
