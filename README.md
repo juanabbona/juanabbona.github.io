@@ -1,4 +1,4 @@
-# Personal Page
+# Personal Page!
 
 Personal website built using Astro and Tailwind CSS.
 
