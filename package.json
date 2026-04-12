@@ -21,7 +21,7 @@
     "dynamic-marquee": "^2.6.5",
     "lodash": "^4.18.1",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2"
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.24"
