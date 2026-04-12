@@ -19,32 +19,33 @@ import PageLoader from "../components/PageLoader.astro";
     </script>
   </head>
   <body
-    class="bg-brand-sand-light md:bg-gradient-to-br md:from-brand-orange-light md:to-brand-sand-dark"
+    class="bg-linear-to-br from-brand-orange-light to-brand-sand-dark"
   >
     <PageLoader />
     <div
-      class="flex items-stretch 2xl:items-center md:h-auto md:min-h-screen overflow-clip p-0 md:p-8 xl:p-12 2xl:px-56"
+      class="min-h-screen flex items-center justify-center overflow-clip p-0 md:p-8 xl:p-12 2xl:px-56"
     >
       <div
         id="content"
-        class="flex w-full md:w-[650px] p-8 md:p-16 pb-36 md:pb-16 2xl:max-h-[950px] z-50 shadow-xl bg-brand-sand-light rounded-none md:rounded-2xl overflow-clip"
+        class="flex my-auto mx-auto w-[90%] md:w-[650px] p-8 md:p-16 2xl:max-h-[950px] z-50 shadow-xl bg-brand-sand-light rounded-2xl overflow-clip"
       >
-        <div class="flex flex-col justify-between gap-16 w-full">
+        <div class="flex flex-col justify-between gap-8 w-full">
           <div class="flex flex-col gap-4 md:gap-8">
-            <h1 id="title" class="text-3xl md:text-5xl font-light md:mb-6">
+            <h1 id="title" class="text-3xl md:text-5xl font-light">
               Juan Abbona
             </h1>
 
             <p id="about" class="text-sm md:text-base">
-              Hi there! I'm Juan, a software engineer based in Montevideo,
-              Uruguay.
+              Software engineer based in Montevideo, Uruguay.
               <br />
-              <br />I've been building web applications for the past 7 years,
-              mostly doing frontend work using React and TypeScript but also
-              dabbling in the world of backend with Python and Django.
+              <br />With over 10 years of experience, I specialize in building
+              modern web applications. On the frontend I work primarily with
+              React and TypeScript; on the backend I've delivered solutions
+              using Python, Node.js and C#.
               <br />
-              <br />I'm also a UI/UX design enthusiast, I love to create
-              beautiful and functional interfaces.
+              <br />I'm also deeply interested in UI/UX design, and I care
+              about crafting interfaces that are both visually refined and
+              intuitive to use.
             </p>
             <div
               id="worldmap"
@@ -56,10 +57,6 @@ import PageLoader from "../components/PageLoader.astro";
               </div>
               <img src="/worldmap.svg" alt="Uruguay in the world map" />
             </div>
-            <h3 id="experience-title" class="text-sm md:text-base">
-              I’m experienced working with
-            </h3>
-            <Tools />
           </div>
           <Contact />
         </div>

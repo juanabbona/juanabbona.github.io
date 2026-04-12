@@ -17,7 +17,7 @@ export const waveAnimation = () => {
 
 export const pageLoadAnimation = () => {
   timeline([
-    ["#page-loader", { opacity: 0 }, { duration: 1, delay: 0.5 }],
+    ["#page-loader", { opacity: 0 }, { duration: 0.5, delay: 0.5 }],
     ["#page-loader", { display: "none" }],
     ["#title", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
     ["#about", { opacity: [0, 1] }, { duration: 0.75, at: "-.5" }],
