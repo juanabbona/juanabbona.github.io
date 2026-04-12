@@ -1,5 +1,5 @@
 import { shuffle } from "lodash";
-import { spring, timeline, type TimelineSegment } from "motion";
+import { spring, timeline, type TimelineSegment } from "@motionone/dom";
 
 export const waveAnimation = () => {
   // If the animation is already running, don't start it again
@@ -39,7 +39,6 @@ export const pageLoadAnimation = () => {
           },
         ] as TimelineSegment
     ),
-    ["#contact-container", { x: ["0%", "-50%"] }, { at: "-1" }],
     ["#contact-container", { y: [300, 0] }, { easing: spring() }],
   ]);
 
