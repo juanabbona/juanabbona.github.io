@@ -5,15 +5,8 @@ import "../styles/global.css";
 
 import "@fontsource-variable/raleway";
 
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config.mjs";
-
-const fullConfig = resolveConfig(tailwindConfig);
-
-const themeColor =
-  fullConfig.theme.colors[
-    "brand-brand-sand-light" as keyof typeof fullConfig.theme.colors
-  ];
+/** Matches `--color-brand-sand-light` in `src/styles/global.css` */
+const themeColor = "#FDF8EC";
 
 interface Props {
   title: string;
@@ -34,7 +27,7 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
-<meta name="theme-color" content={themeColor as string} />
+<meta name="theme-color" content={themeColor} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

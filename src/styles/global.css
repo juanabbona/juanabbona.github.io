@@ -1,4 +1,18 @@
-@import url("./animations.css");
+@import "tailwindcss";
+@import "./animations.css";
+
+@theme {
+	--color-brand-sand-light: #fdf8ec;
+	--color-brand-sand: #fbf2de;
+	--color-brand-sand-dark: #f9eac8;
+	--color-brand-brown: #3d2c2e;
+	--color-brand-orange-light: #fcd8c5;
+	--color-brand-orange: #f58549;
+	--font-sans:
+		"Raleway Variable", ui-sans-serif, system-ui, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--shadow-xl: 0 0px 50px -15px rgba(61, 44, 46, 0.15);
+}
 
 * {
 	@apply text-brand-brown;
